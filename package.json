@@ -1,7 +1,7 @@
 {
-  "name": "floydr",
-  "version": "1.0.1",
-  "description": "React hooks for Floydr ChatGPT widgets",
+  "name": "chatjs-hooks",
+  "version": "1.0.0",
+  "description": "React hooks for ChatGPT widgets",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "bin": {
-    "floydr-build": "./build-all.mts"
+    "chatjs-build": "./build-all.mts"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
@@ -27,14 +27,15 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "floydr",
     "chatgpt",
+    "chatjs",
     "widgets",
     "react",
     "hooks",
-    "mcp"
+    "mcp",
+    "floydr"
   ],
-  "author": "Floydr Team",
+  "author": "ChatJS Team",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.0.0",
@@ -54,10 +55,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/floydr-framework/floydr-react.git"
+    "url": "https://github.com/floydr-framework/chatjs-hooks.git"
   },
   "bugs": {
-    "url": "https://github.com/floydr-framework/floydr-react/issues"
+    "url": "https://github.com/floydr-framework/chatjs-hooks/issues"
   },
   "homepage": "https://floydr.dev"
 }
