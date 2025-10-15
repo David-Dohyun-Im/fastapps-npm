@@ -1,5 +1,5 @@
 {
-  "name": "flick-react",
+  "name": "flicky-react",
   "version": "1.0.0",
   "description": "React hooks for Flick ChatGPT widgets",
   "main": "./dist/index.js",
