@@ -1,11 +1,11 @@
-# flick-react
+# floydr
 
-React hooks for Flick ChatGPT widgets.
+React hooks for Floydr ChatGPT widgets.
 
 ## Installation
 
 ```bash
-npm install flick-react
+npm install floydr
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ Get data passed from your MCP tool to your React widget:
 
 ```jsx
 import React from 'react';
-import { useWidgetProps } from 'flick-react';
+import { useWidgetProps } from 'floydr';
 
 export default function MyWidget() {
   const { message, count } = useWidgetProps();
@@ -36,7 +36,7 @@ Manage stateful data that persists in ChatGPT:
 
 ```jsx
 import React from 'react';
-import { useWidgetState } from 'flick-react';
+import { useWidgetState } from 'floydr';
 
 export default function Counter() {
   const [state, setState] = useWidgetState({ count: 0 });
@@ -55,7 +55,7 @@ Access ChatGPT global values like theme, display mode, etc:
 
 ```jsx
 import React from 'react';
-import { useOpenAiGlobal } from 'flick-react';
+import { useOpenAiGlobal } from 'floydr';
 
 export default function ThemedWidget() {
   const theme = useOpenAiGlobal('theme');
@@ -74,7 +74,7 @@ export default function ThemedWidget() {
 This package is written in TypeScript and includes type definitions.
 
 ```tsx
-import { useWidgetProps } from 'flick-react';
+import { useWidgetProps } from 'floydr';
 
 interface MyWidgetProps {
   message: string;

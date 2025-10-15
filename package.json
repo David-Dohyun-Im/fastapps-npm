@@ -1,7 +1,7 @@
 {
-  "name": "flicky-react",
-  "version": "1.0.0",
-  "description": "React hooks for Flick ChatGPT widgets",
+  "name": "floydr",
+  "version": "1.0.1",
+  "description": "React hooks for Floydr ChatGPT widgets",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "bin": {
-    "flick-build": "./build-all.mts"
+    "floydr-build": "./build-all.mts"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
@@ -27,14 +27,14 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "flick",
+    "floydr",
     "chatgpt",
     "widgets",
     "react",
     "hooks",
     "mcp"
   ],
-  "author": "Flick Team",
+  "author": "Floydr Team",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.0.0",
@@ -54,11 +54,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flick-framework/flick-react.git"
+    "url": "https://github.com/floydr-framework/floydr-react.git"
   },
   "bugs": {
-    "url": "https://github.com/flick-framework/flick-react/issues"
+    "url": "https://github.com/floydr-framework/floydr-react/issues"
   },
-  "homepage": "https://flick.dev"
+  "homepage": "https://floydr.dev"
 }
 
