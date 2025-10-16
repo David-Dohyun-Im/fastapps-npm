@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
  * 
  * @example
  * ```tsx
- * import { useWidgetProps } from 'flick-react';
+ * import { useWidgetProps } from 'fastapps';
  * 
  * export default function MyWidget() {
  *   const { message, count } = useWidgetProps();

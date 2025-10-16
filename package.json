@@ -1,7 +1,7 @@
 {
-  "name": "chatjs-hooks",
+  "name": "fastapps",
   "version": "1.0.0",
-  "description": "React hooks for ChatGPT widgets",
+  "description": "React hooks for FastApps - Build interactive ChatGPT widgets with ease",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "bin": {
-    "chatjs-build": "./build-all.mts"
+    "fastapps-build": "./build-all.mts"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
@@ -27,15 +27,18 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
+    "fastapps",
     "chatgpt",
-    "chatjs",
     "widgets",
     "react",
     "hooks",
     "mcp",
-    "floydr"
+    "openai",
+    "apps-sdk",
+    "chatgpt-widgets",
+    "react-hooks"
   ],
-  "author": "ChatJS Team",
+  "author": "FastApps Team <team@fastapps.dev>",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.0.0",
@@ -55,11 +58,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/floydr-framework/chatjs-hooks.git"
+    "url": "https://github.com/fastapps-framework/fastapps.git",
+    "directory": "chatjs-hooks"
   },
   "bugs": {
-    "url": "https://github.com/floydr-framework/chatjs-hooks/issues"
+    "url": "https://github.com/fastapps-framework/fastapps/issues"
   },
-  "homepage": "https://floydr.dev"
+  "homepage": "https://fastapps.org"
 }
 

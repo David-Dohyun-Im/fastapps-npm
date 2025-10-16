@@ -12,7 +12,7 @@ import type { UnknownObject } from "./types";
  * 
  * @example
  * ```tsx
- * import { useWidgetState } from 'flick-react';
+ * import { useWidgetState } from 'fastapps';
  * 
  * export default function Counter() {
  *   const [count, setCount] = useWidgetState({ value: 0 });

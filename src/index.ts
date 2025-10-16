@@ -1,5 +1,5 @@
 /**
- * Flick React - React hooks for Flick ChatGPT widgets
+ * FastApps React Hooks - React hooks for building ChatGPT widgets
  * 
  * @packageDocumentation
  */

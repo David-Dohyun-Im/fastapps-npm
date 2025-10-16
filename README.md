@@ -1,22 +1,22 @@
-# chatjs-hooks
+# fastapps (React Hooks)
 
-React hooks for ChatGPT widgets.
+React hooks for building interactive ChatGPT widgets with the FastApps framework.
 
 ## Installation
 
 ```bash
-npm install chatjs-hooks
+npm install fastapps
 ```
 
 ## Usage
 
 ### useWidgetProps
 
-Get data passed from your MCP tool to your React widget:
+Get data passed from your Python MCP tool to your React widget:
 
 ```jsx
 import React from 'react';
-import { useWidgetProps } from 'chatjs-hooks';
+import { useWidgetProps } from 'fastapps';
 
 export default function MyWidget() {
   const { message, count } = useWidgetProps();
@@ -32,11 +32,11 @@ export default function MyWidget() {
 
 ### useWidgetState
 
-Manage stateful data that persists in ChatGPT:
+Manage stateful data that persists across ChatGPT sessions:
 
 ```jsx
 import React from 'react';
-import { useWidgetState } from 'chatjs-hooks';
+import { useWidgetState } from 'fastapps';
 
 export default function Counter() {
   const [state, setState] = useWidgetState({ count: 0 });
@@ -51,30 +51,71 @@ export default function Counter() {
 
 ### useOpenAiGlobal
 
-Access ChatGPT global values like theme, display mode, etc:
+Access ChatGPT environment information like theme, display mode, locale, and more:
 
 ```jsx
 import React from 'react';
-import { useOpenAiGlobal } from 'chatjs-hooks';
+import { useOpenAiGlobal } from 'fastapps';
 
 export default function ThemedWidget() {
   const theme = useOpenAiGlobal('theme');
   const displayMode = useOpenAiGlobal('displayMode');
+  const locale = useOpenAiGlobal('locale');
+  const maxHeight = useOpenAiGlobal('maxHeight');
   
   return (
-    <div className={`theme-${theme} mode-${displayMode}`}>
-      <h1>Themed Widget</h1>
+    <div 
+      className={`theme-${theme} mode-${displayMode}`}
+      style={{ maxHeight: `${maxHeight}px` }}
+    >
+      <h1>Themed Widget ({locale})</h1>
     </div>
   );
 }
 ```
 
-## TypeScript
+## Available Hooks
 
-This package is written in TypeScript and includes type definitions.
+- **`useWidgetProps<T>()`** - Access data from your Python tool
+- **`useWidgetState<T>(defaultState)`** - Persistent state management
+- **`useOpenAiGlobal(key)`** - Access ChatGPT environment:
+  - `theme` - Light or dark mode
+  - `displayMode` - inline, pip, or fullscreen
+  - `locale` - User's locale (IETF BCP 47)
+  - `maxHeight` - Layout height constraint
+  - `safeArea` - Mobile safe area insets
+  - `userAgent` - Device and capabilities
+  - `toolInput` - Input parameters
+  - `toolOutput` - Tool response data
+  - `widgetState` - Current persistent state
+
+## Advanced: Direct window.openai API
+
+```jsx
+// Call backend tools
+await window.openai.callTool('refresh_data', { city: 'NYC' });
+
+// Send follow-up messages
+await window.openai.sendFollowUpMessage({ 
+  prompt: 'Tell me more' 
+});
+
+// Request display mode changes
+await window.openai.requestDisplayMode({ 
+  mode: 'fullscreen' 
+});
+
+// Open external links
+window.openai.openExternal({ href: 'https://example.com' });
+```
+
+## TypeScript Support
+
+This package is written in TypeScript and includes full type definitions:
 
 ```tsx
-import { useWidgetProps } from 'chatjs-hooks';
+import { useWidgetProps, useOpenAiGlobal } from 'fastapps';
+import type { Theme, DisplayMode, UserAgent } from 'fastapps';
 
 interface MyWidgetProps {
   message: string;
@@ -82,10 +123,24 @@ interface MyWidgetProps {
 }
 
 export default function MyWidget() {
-  const { message, count } = useWidgetProps<MyWidgetProps>();
-  // message and count are properly typed!
+  const props = useWidgetProps<MyWidgetProps>();
+  const theme = useOpenAiGlobal('theme');
+  
+  // Fully typed!
+  return <div>{props.message}</div>;
 }
 ```
+
+## Documentation
+
+Full documentation available at [fastapps.org](https://fastapps.org)
+
+## Part of FastApps Framework
+
+This package is the React hooks component of the FastApps framework for building ChatGPT widgets.
+
+- **Python SDK**: `pip install fastapps`
+- **React Hooks**: `npm install fastapps`
 
 ## License
 
