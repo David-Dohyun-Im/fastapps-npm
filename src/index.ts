@@ -4,9 +4,11 @@
  * @packageDocumentation
  */
 
+export { useOpenAiGlobal } from './hooks/useOpenaiGlobal';
 export { useWidgetProps } from './hooks/useWidgetProps';
 export { useWidgetState } from './hooks/useWidgetState';
-export { useOpenAiGlobal } from './hooks/useOpenaiGlobal';
+export { useDisplayMode } from './hooks/useDisplayMode';
+export { useMaxHeight } from './hooks/useMaxHeight';
 
 export type {
   OpenAiGlobals,

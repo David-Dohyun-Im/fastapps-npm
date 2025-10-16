@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useOpenAiGlobal } from "./useOpenaiGlobal";
 
 /**
  * Hook to get widget props from ChatGPT tool output.
  * 
+ * @param defaultState - Optional default state to use when toolOutput is not available
  * @returns The tool output data passed from the MCP server
  * 
  * @example
@@ -15,16 +16,16 @@ import { useState, useEffect } from 'react';
  * }
  * ```
  */
-export function useWidgetProps<T = any>(): T {
-  const [props, setProps] = useState<T>({} as T);
-  
-  useEffect(() => {
-    // Official spec: use window.openai.toolOutput
-    if (window.openai?.toolOutput) {
-      setProps(window.openai.toolOutput as T);
-    }
-  }, []);
-  
-  return props;
+export function useWidgetProps<T extends Record<string, unknown>>(
+  defaultState?: T | (() => T)
+): T {
+  const props = useOpenAiGlobal("toolOutput") as T;
+
+  const fallback =
+    typeof defaultState === "function"
+      ? (defaultState as () => T | null)()
+      : defaultState ?? null;
+
+  return props ?? fallback;
 }
 

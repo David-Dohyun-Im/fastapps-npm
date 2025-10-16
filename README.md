@@ -74,11 +74,62 @@ export default function ThemedWidget() {
 }
 ```
 
+### useDisplayMode
+
+Access the current display mode (inline, pip, or fullscreen):
+
+```jsx
+import React from 'react';
+import { useDisplayMode } from 'fastapps';
+
+export default function ResponsiveWidget() {
+  const displayMode = useDisplayMode();
+  
+  return (
+    <div className={`mode-${displayMode}`}>
+      {displayMode === 'fullscreen' ? (
+        <div>Full screen layout</div>
+      ) : (
+        <div>Compact layout</div>
+      )}
+    </div>
+  );
+}
+```
+
+### useMaxHeight
+
+Access the maximum height constraint for the widget:
+
+```jsx
+import React from 'react';
+import { useMaxHeight } from 'fastapps';
+
+export default function ScrollableWidget() {
+  const maxHeight = useMaxHeight();
+  
+  return (
+    <div style={{ maxHeight: `${maxHeight}px`, overflow: 'auto' }}>
+      <p>Content that respects the max height constraint</p>
+      {/* More content... */}
+    </div>
+  );
+}
+```
+
 ## Available Hooks
 
-- **`useWidgetProps<T>()`** - Access data from your Python tool
-- **`useWidgetState<T>(defaultState)`** - Persistent state management
-- **`useOpenAiGlobal(key)`** - Access ChatGPT environment:
+### Core Hooks
+
+- **`useOpenAiGlobal(key)`** - Access any ChatGPT environment property
+- **`useWidgetProps<T>(defaultState?)`** - Access tool output data from your Python tool
+- **`useWidgetState<T>(defaultState)`** - Persistent state management that syncs with ChatGPT
+- **`useDisplayMode()`** - Get current display mode (inline/pip/fullscreen)
+- **`useMaxHeight()`** - Get maximum height constraint in pixels
+
+### Available OpenAI Globals
+
+Use `useOpenAiGlobal(key)` to access:
   - `theme` - Light or dark mode
   - `displayMode` - inline, pip, or fullscreen
   - `locale` - User's locale (IETF BCP 47)
@@ -87,7 +138,24 @@ export default function ThemedWidget() {
   - `userAgent` - Device and capabilities
   - `toolInput` - Input parameters
   - `toolOutput` - Tool response data
+  - `toolResponseMetadata` - Response metadata
   - `widgetState` - Current persistent state
+
+### Custom Convenience Hooks
+
+You can easily create your own convenience hooks:
+
+```typescript
+// Access tool input
+export function useToolInput() {
+  return useOpenAiGlobal('toolInput');
+}
+
+// Access theme
+export function useTheme() {
+  return useOpenAiGlobal('theme');
+}
+```
 
 ## Advanced: Direct window.openai API
 
@@ -114,7 +182,12 @@ window.openai.openExternal({ href: 'https://example.com' });
 This package is written in TypeScript and includes full type definitions:
 
 ```tsx
-import { useWidgetProps, useOpenAiGlobal } from 'fastapps';
+import { 
+  useWidgetProps, 
+  useOpenAiGlobal,
+  useDisplayMode,
+  useMaxHeight 
+} from 'fastapps';
 import type { Theme, DisplayMode, UserAgent } from 'fastapps';
 
 interface MyWidgetProps {
@@ -125,9 +198,18 @@ interface MyWidgetProps {
 export default function MyWidget() {
   const props = useWidgetProps<MyWidgetProps>();
   const theme = useOpenAiGlobal('theme');
+  const displayMode = useDisplayMode();
+  const maxHeight = useMaxHeight();
   
   // Fully typed!
-  return <div>{props.message}</div>;
+  return (
+    <div 
+      className={`theme-${theme}`}
+      style={{ maxHeight: `${maxHeight}px` }}
+    >
+      {props.message} (Mode: {displayMode})
+    </div>
+  );
 }
 ```
 
